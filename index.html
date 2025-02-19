@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Serotonin Exploit Host PS4</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/Style.css">
+</head>
+
+<body style='background-color:#1A1920'>
+    <nav class="navbar text-bg-dark position-relative py-4">
+        <div class="container d-flex justify-content-between align-items-center ">
+            <div class="position-absolute start-50 translate-middle-x text-center">
+                <h1 class="fs-4 text-shadow text-warning m-0">
+                    Serotonin Exploit Host
+                </h1>
+            </div>
+            <!-- Date and Clock (Right-Aligned) -->
+            <div class="ms-auto text-end">
+                <p class="m-0 text-white">
+                    <span id="date">XX/XX/XXXX</span> | <span id="clock">XX:XX</span>
+                </p>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container mt-3 mx-auto text-center py-3 my-2" id="MyItems">
+        <h1>Select your current Firmware</h1>
+        <hr class="border-secondary w-50 mx-auto my-1">
+        <br>
+        <a class="btn btn-primary" href="672/index.html">OFW 6.72</a>
+
+    </div>
+    <br><br> <br><br>
+    <footer class="footer container text-bg-dark text-center rounded w-50">
+        <div class="container py-3">
+            <p class="mb-2 text-warning fw-bold text-shadow">Re-Designed, and Maintained By: </p>
+            <h3 class="text-white text-shadow">A0ZHAR</h3>
+            <hr class="border-secondary w-50 mx-auto">
+            <p class="mb-2 text-warning fw-bold text-shadow">Super Special Thanks To: </p>
+            <p class="fs-5 text-white text-shadow">Karo Sharifi, Sleirsgoevy, Leeful, AlAzif, SiSTRo, ... </p>
+        </div>
+    </footer>
+    <script>    function showdate() {
+        var dt = new Date();
+        var Hour = dt.getHours();
+        var Minute = dt.getMinutes();
+        var Day = dt.getDate();
+        var Month = dt.getMonth() + 1;
+        var Year = dt.getFullYear();
+
+        if (Minute < 10) { Minute = "0" + Minute; }
+        if (Hour < 10) { Hour = "0" + Hour; }
+
+        var dateElement = document.getElementById("date");
+        var clockElement = document.getElementById("clock");
+
+        if (dateElement && clockElement) { // Ensure elements exist
+            dateElement.innerHTML = Day + "/" + Month + "/" + Year;
+            clockElement.innerHTML = Hour + ":" + Minute;
+        }
+    }
+
+    // Run once immediately to prevent delay
+    showdate();
+
+    // Update every second
+    setInterval(showdate, 1000);</script>
+</body>
+
+</html>
