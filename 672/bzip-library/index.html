@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Serotonin Exploit Host PS4 672</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/Style.css">
+    <script src="common/exploit.js"></script>
+    <script src="common/helpers.js"></script>
+    <script src="common/rop.js"></script>
+    <script src="common/syscalls.js"></script>
+    <script src="js/jb.js"></script>
+   
+</head>
+
+<body style='background-color:#1A1920'>
+    <nav class="navbar text-bg-dark position-relative py-4">
+        <div class="container d-flex justify-content-between align-items-center ">
+            <div class="position-absolute start-50 translate-middle-x text-center">
+                <h1 class="fs-4 text-shadow text-warning m-0">
+                    <a class="pass-btn">Pass = <span id="passCounter">0</span></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Serotonin Exploit Host 672
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="fail-btn">Fail = <span id="failCounter">0</span></a>
+                </h1>
+            </div>
+            <!-- Date and Clock (Right-Aligned) -->
+            <div class="ms-auto text-end">
+                <p class="m-0 text-white">
+                    <span id="date">XX/XX/XXXX</span> | <span id="clock">XX:XX</span>
+                </p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Status Heading Section -->
+    <div class="container-fluid text-bg-light mb-3 text-center border-top">
+        <h4 id="msgs2" class="py-1">Status</h4>
+    </div>
+    <br>
+    <div class="container mt-3 mx-auto text-center" id="MyItems">
+        <br>
+        <div id="all" style="text-align:center;display: block;">
+            <button class="btn text-bg-dark rounded goldhen-btn mx-1" data-pl-info="GoldHen v2.1.2 By SiSTRO" data-hen-pl="goldhen_212_672.bin.bz2">GoldHenV2.1.2</button>
+            <button class="btn text-bg-dark rounded goldhen-btn mx-1" data-pl-info="GoldHen v2.3 By SiSTRO" data-hen-pl="goldhen_2.3_672.bin.bz2">GoldHenV2.3</button>
+            <button class="btn text-bg-dark rounded goldhen-btn mx-1" data-pl-info="GoldHen v2.4b16.2 By SiSTRO" data-hen-pl="goldhenv2.4b16.2.bin.bz2">GoldHenV2.4b16.2</button>
+            <br><br>
+            <button class="btn rounded btn-info mx-1" data-pl-info="A large collection of trainers for your PS4 games" data-pl="WebRTE.bin.bz2">WebRTE</button>
+            <button class="btn rounded btn-success mx-1" data-pl-info="Save Data Mounter" data-pl="pl_ps4debug.bin.bz2">PS4debug</button>
+            <button class="btn rounded btn-danger mx-1" data-pl-info="Orbis Toolbox Loader Alfa 1190" data-pl="Orbis-Toolbox-672.bin.bz2">Orbis Toolbox</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="All tools payloads" onclick="alltools()">Tools Group</button>
+            <button class="btn henGroupBtn mx-1" data-pl-info="Goldhen & Hen & Mira" onclick="allhens()">HEN Group</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="All Restore & Backup payloads" onclick="allrestore()">Restore Group</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="All Dump payloads mx-1" data-pl-info="All Dump payloads" onclick="alldump()">Dump Group</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="All Linux payloads" onclick="alllinux()">Linux Group</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="All Mods Gtav & RDR2 payloads" onclick="allmods()">Gtav & RDR2 Mods Group</button>
+        </div>
+
+        <div id="tools" class="text-center" style="display:none;">
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="back to base menu" onclick="backall()">Back to Menu</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Creates dummy files in the PS4 update folder" data-pl="pl_updatesDisable.bin.bz2">Disable Update</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Removes the dummy files in the PS4 update folder" data-pl="pl_updatesEnable.bin.bz2">Enable Update</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Create a backup of important database files and User Data" data-pl="DB_SG_Backup.bin.bz2">DB Backup</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Disable the auto opening of the last page used in the PS4 WebBrowser" data-pl="pl_historyBlocker.bin.bz2">History Blocker</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Move installed games to an external USB drive" data-pl="pl_app2usb.bin.bz2">App2USB</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="To install .pkg files without a large enough USB drive" data-pl="pl_fakeusb.bin.bz2">FakeUSB</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Dump your EAP KEY to a USB drive" data-pl="pl.PS4-EAP-KEY-DUMPER.bin.bz2">EAP.Key</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Changes the installed games Licence type from FAKE to FREE (AIAzif)" data-pl="rifrenamer.bin.bz2">Rif.Renamer</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="unlocks some debug features available on testkit" data-pl="pl_ToDEX.bin.bz2">ToDex</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="that converts Target ID to 0x81 which is DevKit" data-pl="pl_ToDEV.bin.bz2">ToDev</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="converts Target ID to 0xA0 which is Arcade or Kratos model" data-pl="pl_ToKratos.bin.bz2">ToKratos</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Avatar Dumper Injector v2" data-pl="avatar.bin.bz2">Avatar.Inject</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Web Activator" onclick="load_web()">Web_activator</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="A full access FTP server for the PS4" data-pl="pl_FTP.bin.bz2">FTP</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Loads a bin file sent to the PS4 IP address on port 9021" onclick="load_binloader()">Bin Loader</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Copy json and shn files from USB to PS4" data-pl="CopyCH.bin.bz2">Cheat Copy</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="FW Version Spoof to X.XX " onclick="load_SPF()">Spoofer</button>
+            <select class="text-center fs-5 text-black" id="fws1"></select>
+            <select class="select text-center fs-5 text-black" id="fws2"></select>            
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Set the desired temperature that the PS4 fan starts" onclick="load_fanthresh()">Set Fan</button>
+            <select class="text-center fs-5 text-black" id="fws1tempC"></select>
+            <span class="fs-6 text-white">&#176;C</span>
+        </div>
+
+        <div id="dump" class="text-center" style="display:none;">
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="back to base menu" onclick="backall()">Back to Menu</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="PS4 PKG Backup by Kameleon" data-pl="pkg-backup.bin.bz2">PKG Backup</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Dump Game only to a USB drive to be able to create fpkg files" data-pl="pl_DumperG.bin.bz2">Dumper Game</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Dump Update Game only to a USB drive to be able to create fpkg files" data-pl="pl_DumperU.bin.bz2">Dumper Update</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Dump Game+Update to a USB drive to be able to create fpkg files" data-pl="pl_DumperGU.bin.bz2">Dumper G+U</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Dump Game+Update Merged to a USB drive to be able to create fpkg files" data-pl="pl_DumperM.bin.bz2">Dumper G+U M</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Dump a copy of your kernel to your USB drive" data-pl="pl_kernelDumper.bin.bz2">Kernel Dumper</button>
+        </div>
+
+        <div id="restore" class="text-center" style="display:none;">
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="back to base menu" onclick="backall()">Back to Menu</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Restore a backup of the database files and User Data" data-pl="DB_SG_Restore.bin.bz2">DB Restore</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Backup Trophy" data-pl="Trophy_Backup.bin.bz2">Trophy Backup</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Restore Trophy" data-pl="Trophy_Restore.bin.bz2">Trophy Restore</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Restore db file for Host Cache from usb" data-pl="cache.bin.bz2">Restore Cache</button>
+        </div>
+
+        <div id="linux" class="text-center" style="display:none;">
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="back to base menu" onclick="backall()">Back to Menu</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="A Linux Loader to run a Linux installation from USB" data-pl="pl_linux.bin.bz2">Linux.USB</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Linux for baikal version" data-pl="linuxbaikal.bin.bz2">Linux:Baikal</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Boot Linux from internal HDD" data-pl="linuxhdd.bin.bz2">Linux.Internal</button>
+        </div>
+
+        <div id="hens" class="text-center" style="display:none;">
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="back to base menu" onclick="backall()">Back to Menu</button>
+            <br><br>
+            <button class="btn text-bg-dark rounded goldhen-btn mx-1" data-pl-info="GoldHen v1.0 By SiSTRO" data-hen-pl="goldhen672v1.bin.bz2">GoldHenV1.0</button>
+            <button class="btn text-bg-dark rounded goldhen-btn mx-1" data-pl-info="GoldHen v1.1 By SiSTRO" data-hen-pl="goldhen672.bin.bz2">GoldHenV1.1</button>
+            <button class="btn text-bg-dark rounded goldhen-btn mx-1" data-pl-info="GoldHen v2.0b By SiSTRO" data-hen-pl="goldhen2b672.bin.bz2">GoldHenV2b</button>
+            <button class="btn text-bg-dark rounded goldhen-btn mx-1" data-pl-info="GoldHen v2.0b2 By SiSTRO" data-hen-pl="goldhen2b2672.bin.bz2">GoldHenV2b2</button>
+            <br><br>
+            <button class="btn text-bg-dark rounded goldhen-btn mx-1" data-pl-info="GoldHen v2.2.4 By SiSTRO" data-hen-pl="goldhen_2.2.4_672.bin.bz2">GoldHenV2.2.4</button>
+            <button class="btn text-bg-dark rounded goldhen-btn mx-1" data-pl-info="GoldHen v2.2.2 By SiSTRO" data-hen-pl="goldhen_2.2.2_672.bin.bz2">GoldHenV2.2.2</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="HEN 2.1.3 By SiSTRO" data-hen-pl="hen213.bin.bz2">Hen_v2.1.3</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="HEN 2.1.3 By SiSTRO & Leeful" data-hen-pl="hen213b.bin.bz2">Hen_v2.1.3b</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Mira By OrbisTeam" data-mira-pl="mira.elf.bz2">Mira.Orbis</button>
+        </div>
+
+        <div id="gtav" class="text-center" style="display:none;">
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="back to base menu" onclick="backall()">Back to Menu</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Red dead redemption 2 mod  menu V1.00 by RF0oDxM0Dz (R1 + Square)" data-pl="Oysters1.00.bin.bz2">RDR2 V1.00</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Red dead redemption 2 mod  menu V1.13 by RF0oDxM0Dz (R1 + Square)" data-pl="Oysters1.13.bin.bz2">RDR2 V1.13</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Red dead redemption 2 mod  menu V1.19 by RF0oDxM0Dz (R1 + Square)" data-pl="Oysters1.19.bin.bz2">RDR2 V1.19</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Red dead redemption 2 mod  menu V1.24 by RF0oDxM0Dz (R1 + Square)" data-pl="Oysters1.24.bin.bz2">RDR2 V1.24</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="Red dead redemption 2 mod  menu V1.29 by RF0oDxM0Dz (R1 + Square)" data-pl="Oysters1.29.bin.bz2">RDR2 V1.29</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Mods for Base(R1+L1)" data-pl="gtava100.bin.bz2">GTAV Ar.1.00</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Mods for 1.27(==> + [])" data-pl="gtava127.bin.bz2">GTAV.Ar.1.27</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Mods for 1.32(==> + [])" data-pl="gtava132.bin.bz2">GTAV.Ar.1.32</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Mods Lamance for 1.32" data-pl="Lamance132.bin.bz2">GTAV.L.1.32</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Mods BeefQueefMod for 1.32" data-pl="BeefQueefMod672-132.bin.bz2">GTAV.BQ.1.32</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Mods BeefQueefMod for 1.33" data-pl="BeefQueefMod672-133.bin.bz2">GTAV.BQ.1.33</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Mods BeefQueefMod for 1.38" data-pl="BeefQueefMod138.bin.bz2">GTAV.BQ.1.38</button>
+            <br><br>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Expulsion Mode Menu 1.32 v1.1 by x_WildeModz_x" data-pl="WildeModz-1.32.bin.bz2">GTAV W132</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Expulsion Mode Menu 1.33 v1.1 by x_WildeModz_x" data-pl="WildeModz-1.33.bin.bz2">GTAV W133</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Expulsion Mode Menu 1.38 v1.7 by x_WildeModz_x" data-pl="WildeModz-1.38.bin.bz2">GTAV W138</button>
+            <button class="btn rounded text-bg-dark mx-1" data-pl-info="GTAV Lamance v9.00 Mode Menu for 1.38 by david1337hax" data-pl="Lamance9.bin.bz2">GTAV Lamance.1.38</button>
+        </div>
+    </div>
+    <br>
+    <footer class="footer container text-bg-dark text-center rounded w-50">
+        <div class="container py-3">
+            <p class="mb-2 text-warning fw-bold text-shadow">Re-Designed, and Maintained By: </p>
+            <h3 class="text-white text-shadow">A0ZHAR</h3>
+            <hr class="border-secondary w-50 mx-auto">
+            <p class="mb-2 text-warning fw-bold text-shadow">Super Special Thanks To: </p>
+            <p class="fs-5 text-white text-shadow">Karo Sharifi, Sleirsgoevy, Leeful, AlAzif, SiSTRo, ... </p>
+        </div>
+    </footer>
+    <script src="js/bzip.js"></script>
+    <script src="js/webhost_utils.js"></script>
+    <script src="misc/fan_pl.js"></script>
+    <script src="misc/spoof_pl.js"></script>
+    <script src="misc/fan_spoof_init.js"></script>
+</body>
+
+</html>
