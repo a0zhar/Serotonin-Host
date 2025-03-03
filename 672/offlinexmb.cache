@@ -1,16 +1,9 @@
-CACHE MANIFEST 
+CACHE MANIFEST
 
 CACHE:
-index.html
-css/bootstrap.min.css
-css/Style.css
-common/exploit.js
-common/helpers.js
-common/rop.js
-common/syscalls.js
-misc/fan_pl.js
-misc/fan_spoof_init.js
-misc/spoof_pl.js
+
+# JavaScript Libraries
+../js/bootstrap.bundle.min.js
 js/bzip.js
 js/exp_loader.js
 js/frontend.js
@@ -19,6 +12,27 @@ js/payload.js
 js/pl_loader2.js
 js/plutils.js
 js/webhost_utils.js
+
+# Stylesheets
+../css/bootstrap.min.css
+css/Style.css
+
+# Common Scripts
+common/exploit.js
+common/helpers.js
+common/rop.js
+common/syscalls.js
+
+# Miscellaneous Scripts
+misc/fan_pl.js
+misc/fan_spoof_init.js
+misc/spoof_pl.js
+
+# HTML Files
+index.html
+../index.html
+
+# Payloads
 payloads/avatar.bin.bz2
 payloads/BeefQueefMod138.bin.bz2
 payloads/BeefQueefMod672-132.bin.bz2
@@ -27,6 +41,8 @@ payloads/cache.bin.bz2
 payloads/CopyCH.bin.bz2
 payloads/DB_SG_Backup.bin.bz2
 payloads/DB_SG_Restore.bin.bz2
+
+# GoldHEN Payloads
 payloads/goldhen_2.1_672.bin.bz2
 payloads/goldhen_2.1.1_672.bin.bz2
 payloads/goldhen_2.2_672.bin.bz2
@@ -41,15 +57,25 @@ payloads/goldhen2b2672.bin.bz2
 payloads/goldhen672.bin.bz2
 payloads/goldhen672v1.bin.bz2
 payloads/goldhenv2.4b16.2.bin.bz2
+
+# GTA V Payloads
 payloads/gtava100.bin.bz2
 payloads/gtava127.bin.bz2
 payloads/gtava132.bin.bz2
+
+# HEN Payloads
 payloads/hen213.bin.bz2
 payloads/hen213b.bin.bz2
+
+# Lamance Payloads
 payloads/Lamance9.bin.bz2
 payloads/Lamance132.bin.bz2
+
+# Linux Payloads
 payloads/linuxbaikal.bin.bz2
 payloads/linuxhdd.bin.bz2
+
+# Miscellaneous Payloads
 payloads/mira.elf.bz2
 payloads/Orbis-Toolbox-672.bin.bz2
 payloads/Oysters1.00.bin.bz2
@@ -58,6 +84,8 @@ payloads/Oysters1.19.bin.bz2
 payloads/Oysters1.24.bin.bz2
 payloads/Oysters1.29.bin.bz2
 payloads/pkg-backup.bin.bz2
+
+# Various PL (Payload) Scripts
 payloads/pl_app2usb.bin.bz2
 payloads/pl_DumperG.bin.bz2
 payloads/pl_DumperGU.bin.bz2
@@ -75,13 +103,17 @@ payloads/pl_ToKratos.bin.bz2
 payloads/pl_updatesDisable.bin.bz2
 payloads/pl_updatesEnable.bin.bz2
 payloads/pl.PS4-EAP-KEY-DUMPER.bin.bz2
+
+# Additional Tools
 payloads/rifrenamer.bin.bz2
 payloads/Trophy_Backup.bin.bz2
 payloads/Trophy_Restore.bin.bz2
 payloads/WebRTE.bin.bz2
+
+# WildeModz Payloads
 payloads/WildeModz-1.32.bin.bz2
 payloads/WildeModz-1.33.bin.bz2
 payloads/WildeModz-1.38.bin.bz2
 
-NETWORK: 
+NETWORK:
 *
